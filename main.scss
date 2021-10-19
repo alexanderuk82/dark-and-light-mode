@@ -18,6 +18,11 @@
       @content;
     }
   }
+  @if $breakpoint==lgdesk {
+    @media (min-width: 75em) {
+      @content;
+    }
+  }
 }
 
 :root {
@@ -41,11 +46,14 @@ html.light {
 html {
   font-size: 62.5%;
   transition: all 0.6s ease;
+  @include responsive(lgdesk) {
+    font-size: 66%;
+  }
 }
 body {
   font-size: 1.4rem;
   height: 100vh;
-  padding: 2.5rem;
+  padding: 2.5rem 0;
   font-family: var(--main-font);
   color: var(--secondary-color);
 }
@@ -56,6 +64,7 @@ body {
 }
 
 .nav {
+  padding: 2.5rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
@@ -185,21 +194,29 @@ body {
 }
 
 .hero {
-  display: flex;
-  height: 100vh;
-  @include responsive(smdesk) {
+  display: grid;
+  min-height: 90%;
+  padding-left: 2.5rem;
+  @include responsive(tp) {
     display: grid;
     grid-template-columns: 1fr 43vw;
     place-items: center;
   }
 
   &__left {
+    grid-column: 1/1;
     display: grid;
     place-content: center;
     grid-template-rows: auto auto auto 19vw;
     row-gap: 2rem;
     align-items: center;
-    z-index: 1;
+    background-image: url(../images/Group-59.png);
+    background-position: 21.9rem 4.2rem;
+    background-repeat: no-repeat;
+
+    @include responsive(tp) {
+      background-image: none;
+    }
 
     @include responsive(smdesk) {
       grid-template-rows: auto auto auto 13vw;
@@ -293,25 +310,60 @@ body {
   }
 
   &__right {
-    position: absolute;
-    background-image: url(../images/image-slider.png);
+    display: none;
     height: 100%;
-    width: 129vw;
-    z-index: 0;
-    left: -4rem;
-    transition: all 0.2s ease;
     @include responsive(tp) {
-      left: 22rem;
-      top: 5rem;
+      display: block;
+    }
+    @include responsive(lgdesk) {
+      position: relative;
+      height: 103%;
+      width: 100%;
+      overflow: hidden;
     }
 
-    @include responsive(smdesk) {
-      position: relative;
-      left: 0;
-      top: -3%;
-      background-position: 15vw 31%;
-      background-repeat: no-repeat;
+    img {
+      height: 100%;
+      width: 100%;
+      object-position: left top;
+      object-fit: cover;
+      @include responsive(lgdesk) {
+        height: 96.9%;
+        width: 100vw;
+        -o-object-position: left top;
+        object-position: -91px -151px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        position: absolute;
+      }
     }
+
+    // position: absolute;
+    // background-image: url(../images/image-slider.png);
+    // height: 100%;
+    // width: 94%;
+    // z-index: 0;
+    // -webkit-transition: all 0.2s ease;
+    // transition: all 0.2s ease;
+
+    // img {
+    //   display: none;
+    // }
+    // @include responsive(tp) {
+    //   left: 22rem;
+    //   top: 5rem;
+    // }
+
+    // @include responsive(smdesk) {
+    //   background-image: none;
+    //   position: relative;
+    //   height: 100%;
+    //   width: 100%;
+
+    //   img {
+    //     display: block;
+    //   }
+    // }
   }
 }
 .visible {
