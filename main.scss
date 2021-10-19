@@ -315,12 +315,12 @@ body {
     height: 100%;
     @include responsive(tp) {
       display: block;
+      overflow: hidden;
     }
     @include responsive(lgdesk) {
       position: relative;
       height: 103%;
       width: 100%;
-      overflow: hidden;
     }
 
     img {
