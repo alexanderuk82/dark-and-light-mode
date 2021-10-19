@@ -201,6 +201,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 43vw;
     place-items: center;
+    overflow: hidden;
   }
 
   &__left {
